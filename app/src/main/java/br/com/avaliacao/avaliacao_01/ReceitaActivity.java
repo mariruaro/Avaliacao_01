@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ReceitaActivity extends AppCompatActivity {
+    Float saldoAtual;
     Button btnSalva;
     DataBaseHelperSaldo myDb;
     EditText deposito,saldo;
@@ -29,6 +30,27 @@ public class ReceitaActivity extends AppCompatActivity {
         saldo = (EditText)findViewById(R.id.txtSaldo);
         myDb = new DataBaseHelperSaldo(this);
         insertFirstElement();
+        saldoAtual = myDb.getSaldo("1");
+        saldo.setText(saldoAtual.toString());
+        Salvar();
+    }
+
+    public void Salvar(){
+        btnSalva.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String str=deposito.getText().toString();
+                        Float number = Float.parseFloat(str);
+                        boolean isUpdate = myDb.updateData("1",number,saldoAtual,true);
+                        if(isUpdate){
+                            Toast.makeText(ReceitaActivity.this,"Saldo Updated",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(ReceitaActivity.this,"Saldo not Updated",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+        );
     }
 
     public void insertFirstElement(){
@@ -39,4 +61,6 @@ public class ReceitaActivity extends AppCompatActivity {
             return;
         }
     }
+
+
 }

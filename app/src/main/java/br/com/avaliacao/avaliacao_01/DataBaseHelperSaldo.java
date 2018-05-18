@@ -39,17 +39,31 @@ public class DataBaseHelperSaldo extends SQLiteOpenHelper {
         }
     }
 
+    public Float getSaldo(String id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("select SALDO from "+TABLE_NAME + " WHERE ID = "+id,null );
+        Float n=0f;
+        if(res.moveToFirst()){
+             n = res.getFloat(0);
+        }
+        res.close();
+        sqLiteDatabase.close();
+        return n;
+    }
+
     public Cursor getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("select * from "+TABLE_NAME,null );
         return res;
     }
 
-    public boolean updateData(String id,float saldo){
+    public boolean updateData(String id,Float saldo,Float saldoAtual,boolean tipo){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,id);
-        contentValues.put(COL_2,saldo);
+        if(tipo){
+            contentValues.put(COL_2,saldo+saldoAtual);
+        }
         sqLiteDatabase.update(TABLE_NAME, contentValues, "id = ?", new String[]{ id });
         return true;
     }
