@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.avaliacao.avaliacao_01.MainActivity">
+    <item
+        android:id="@+id/receita"
+        android:orderInCategory="100"
+        android:title="@string/receita"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/despesa"
+        android:orderInCategory="100"
+        android:title="@string/despesa"
+        app:showAsAction="never" />
+</menu>

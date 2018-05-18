@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Avaliacao_01</string>
+    <string name="receita">Receita</string>
+    <string name="despesa">Despesa</string>
+    <string name="rotulo1">Saldo Atual</string>
+    <string name="rotulo2">Últimas Despesas</string>
+    <string name="rotulo3">Saldo</string>
+    <string name="rotulo4">Depósito</string>
+    <string name="rotulo5">Salvar</string>
+    <string name="rotulo6">Despesa</string>
+    <string name="rotulo7">Valor da Despesa</string>
+    <string name="title_activity_receita">ReceitaActivity</string>
+    <string name="title_activity_despesa">DespesaActivity</string>
+
+</resources>
