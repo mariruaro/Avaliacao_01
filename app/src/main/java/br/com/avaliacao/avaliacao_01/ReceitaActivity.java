@@ -1,5 +1,6 @@
 package br.com.avaliacao.avaliacao_01;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class ReceitaActivity extends AppCompatActivity {
         deposito = (EditText)findViewById(R.id.txtDeposito);
         saldo = (EditText)findViewById(R.id.txtSaldo);
         myDb = new DataBaseHelperSaldo(this);
-        insertFirstElement();
         saldoAtual = myDb.getSaldo("1");
         saldo.setText(saldoAtual.toString());
         Salvar();
@@ -42,25 +42,21 @@ public class ReceitaActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         String str=deposito.getText().toString();
                         Float number = Float.parseFloat(str);
-                        boolean isUpdate = myDb.updateData("1",number,saldoAtual,true);
+                        boolean isUpdate = myDb.updateDataSaldo("1",number,saldoAtual,true);
                         if(isUpdate){
-                            Toast.makeText(ReceitaActivity.this,"Saldo Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ReceitaActivity.this,"Depósito Realizado com Sucesso",Toast.LENGTH_LONG).show();
+                            returnScreen();
                         }else{
-                            Toast.makeText(ReceitaActivity.this,"Saldo not Updated",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ReceitaActivity.this,"Erro ao Realizar Depósito",Toast.LENGTH_LONG).show();
                         }
                     }
                 }
         );
     }
 
-    public void insertFirstElement(){
-        Cursor res = myDb.getAllData();
-        if(res.getCount()==0){
-            myDb.insertData(0f);
-        }else{
-            return;
-        }
+    public void returnScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
-
 
 }

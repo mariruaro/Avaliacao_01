@@ -39,6 +39,7 @@
             android:text="@string/rotulo2" />
 
         <ListView
+            android:id="@+id/listDespesas"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
